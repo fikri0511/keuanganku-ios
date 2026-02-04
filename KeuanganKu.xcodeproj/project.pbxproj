@@ -6,6 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C5796A872F30865F0080D193 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A862F30865F0080D193 /* Auth */; };
+		C5796A892F30865F0080D193 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A882F30865F0080D193 /* Functions */; };
+		C5796A8B2F30865F0080D193 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A8A2F30865F0080D193 /* PostgREST */; };
+		C5796A8D2F30865F0080D193 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A8C2F30865F0080D193 /* Realtime */; };
+		C5796A8F2F30865F0080D193 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A8E2F30865F0080D193 /* Storage */; };
+		C5796A912F30865F0080D193 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = C5796A902F30865F0080D193 /* Supabase */; };
+		C5CD945E2F3075BF0024F3DD /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = C5CD945D2F3075BF0024F3DD /* Pulse */; };
+		C5CD94602F3075BF0024F3DD /* PulseProxy in Frameworks */ = {isa = PBXBuildFile; productRef = C5CD945F2F3075BF0024F3DD /* PulseProxy */; };
+		C5CD94622F3075BF0024F3DD /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = C5CD94612F3075BF0024F3DD /* PulseUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C51BA5FE2F28952B00E1193D /* KeuanganKu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeuanganKu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +35,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5796A8D2F30865F0080D193 /* Realtime in Frameworks */,
+				C5796A8B2F30865F0080D193 /* PostgREST in Frameworks */,
+				C5796A892F30865F0080D193 /* Functions in Frameworks */,
+				C5CD94622F3075BF0024F3DD /* PulseUI in Frameworks */,
+				C5796A8F2F30865F0080D193 /* Storage in Frameworks */,
+				C5796A912F30865F0080D193 /* Supabase in Frameworks */,
+				C5CD945E2F3075BF0024F3DD /* Pulse in Frameworks */,
+				C5796A872F30865F0080D193 /* Auth in Frameworks */,
+				C5CD94602F3075BF0024F3DD /* PulseProxy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +53,8 @@
 		C51BA5F52F28952B00E1193D = {
 			isa = PBXGroup;
 			children = (
-				C51BA61C2F28E21F00E1193D /* New Group */,
+				C51BA6002F28952B00E1193D /* KeuanganKu */,
+				C5796A852F30865F0080D193 /* Frameworks */,
 				C51BA5FF2F28952B00E1193D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,12 +67,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C51BA61C2F28E21F00E1193D /* New Group */ = {
+		C5796A852F30865F0080D193 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C51BA6002F28952B00E1193D /* KeuanganKu */,
 			);
-			path = "New Group";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,6 +94,15 @@
 			);
 			name = KeuanganKu;
 			packageProductDependencies = (
+				C5CD945D2F3075BF0024F3DD /* Pulse */,
+				C5CD945F2F3075BF0024F3DD /* PulseProxy */,
+				C5CD94612F3075BF0024F3DD /* PulseUI */,
+				C5796A862F30865F0080D193 /* Auth */,
+				C5796A882F30865F0080D193 /* Functions */,
+				C5796A8A2F30865F0080D193 /* PostgREST */,
+				C5796A8C2F30865F0080D193 /* Realtime */,
+				C5796A8E2F30865F0080D193 /* Storage */,
+				C5796A902F30865F0080D193 /* Supabase */,
 			);
 			productName = KeuanganKu;
 			productReference = C51BA5FE2F28952B00E1193D /* KeuanganKu.app */;
@@ -102,6 +132,10 @@
 			);
 			mainGroup = C51BA5F52F28952B00E1193D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C5CD945C2F3075BF0024F3DD /* XCRemoteSwiftPackageReference "Pulse" */,
+				C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C51BA5FF2F28952B00E1193D /* Products */;
 			projectDirPath = "";
@@ -340,6 +374,73 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+		C5CD945C2F3075BF0024F3DD /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C5796A862F30865F0080D193 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		C5796A882F30865F0080D193 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		C5796A8A2F30865F0080D193 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		C5796A8C2F30865F0080D193 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		C5796A8E2F30865F0080D193 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		C5796A902F30865F0080D193 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C59DF74E2F3084B900A529D2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		C5CD945D2F3075BF0024F3DD /* Pulse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5CD945C2F3075BF0024F3DD /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		C5CD945F2F3075BF0024F3DD /* PulseProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5CD945C2F3075BF0024F3DD /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseProxy;
+		};
+		C5CD94612F3075BF0024F3DD /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5CD945C2F3075BF0024F3DD /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C51BA5F62F28952B00E1193D /* Project object */;
 }
