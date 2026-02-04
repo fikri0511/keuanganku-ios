@@ -87,7 +87,7 @@ struct KeuanganView: View {
             .padding(24)
         }
 
-        .task {
+        .task  {
             await dashboardVM.loadData()
             await walletVM.loadWallets()
         }

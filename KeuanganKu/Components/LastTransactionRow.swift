@@ -38,8 +38,9 @@ struct LastTransactionRow: View {
                         .foregroundStyle(.secondary.opacity(0.7))
                 }
             }
-
-            Spacer()
+ 
+            
+            Spacer ()
 
             // KANAN (UANG + TITIK TIGA)
             HStack(alignment: .center, spacing: 8) {
