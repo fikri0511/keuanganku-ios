@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 extension Double {
     func toRupiah() -> String {
         let formatter = NumberFormatter()
@@ -17,5 +18,15 @@ extension Double {
 
         let numberString = formatter.string(from: NSNumber(value: self)) ?? "0"
         return "Rp \(numberString)"
+    }
+
+    func toNumberString() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.maximumFractionDigits = 0
+        formatter.minimumFractionDigits = 0
+
+        return formatter.string(from: NSNumber(value: self)) ?? "0"
     }
 }

@@ -13,6 +13,7 @@ struct TransactionItem: Codable, Identifiable {
     let amount: Double
     let note: String?
     let type: String
+    let created_at: String
 
     let wallet: WalletMini
     let destination_wallet: WalletMini?
@@ -23,20 +24,9 @@ struct TransactionItem: Codable, Identifiable {
     var isIncome: Bool { type == "income" }
     var isTransfer: Bool { type == "transfer" }
 
-    // MARK: UI TEXT
-
     var title: String {
-        if isTransfer {
-            return "Transfer"
-        }
+        if isTransfer { return "Transfer" }
         return category?.name ?? "Transaksi"
-    }
-
-    var subtitle: String {
-        if let note, !note.isEmpty {
-            return "\(wallet.name) • \(note)"
-        }
-        return wallet.name
     }
 
     var color: Color {
@@ -48,6 +38,15 @@ struct TransactionItem: Codable, Identifiable {
     var iconName: String {
         SFSymbolMapper.map(category?.icon ?? wallet.icon)
     }
+
+    // 🔥 PENTING
+    var createdAt: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXXXX"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.date(from: created_at) ?? Date()
+    }
+
 }
 
 // MARK: - Nested

@@ -23,8 +23,10 @@ final class DashboardViewModel: ObservableObject {
             let wallets = try await WalletService.shared.fetchWallets()
             let transactions = try await TransactionService.shared.fetchAllTransactions(limit: 10)
             
-            lastTransactions = transactions
-            
+            lastTransactions = transactions.filter {
+                $0.type == "income" || $0.type == "expense"
+            }
+
             totalBalance = wallets.reduce(0) { $0 + $1.balance }
             
             // Income & Expense cuma statistik
