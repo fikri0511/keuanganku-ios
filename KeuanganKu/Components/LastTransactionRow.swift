@@ -13,7 +13,6 @@ struct LastTransactionRow: View {
     var body: some View {
         HStack(spacing: 14) {
 
-            // ICON
             Circle()
                 .fill(transaction.color.opacity(0.15))
                 .frame(width: 44, height: 44)
@@ -22,46 +21,39 @@ struct LastTransactionRow: View {
                         .foregroundStyle(transaction.color)
                 )
 
-            // TEXT KIRI
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 4) {
+
                 Text(transaction.title)
                     .font(.subheadline.weight(.semibold))
 
+                // WALLET
                 Text(transaction.wallet.name)
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
-                // NOTE di paling bawah
+                // JAM (Detail pakai jam)
+                Text(transaction.createdAt.toHourMinute())
+                    .font(.caption2)
+                    .foregroundStyle(.secondary.opacity(0.7))
+
                 if let note = transaction.note, !note.isEmpty {
                     Text(note)
                         .font(.caption2)
                         .foregroundStyle(.secondary.opacity(0.7))
                 }
             }
- 
-            
-            Spacer ()
 
-            // KANAN (UANG + TITIK TIGA)
-            HStack(alignment: .center, spacing: 8) {
+            Spacer()
 
+            HStack(spacing: 8) {
                 Text(amountText)
                     .font(.subheadline.bold())
                     .foregroundStyle(transaction.color)
+                    .monospacedDigit()
 
                 Menu {
-                    Button {
-                        print("Edit tapped")
-                    } label: {
-                        Label("Edit", systemImage: "pencil")
-                    }
-
-                    Button(role: .destructive) {
-                        print("Delete tapped")
-                    } label: {
-                        Label("Hapus", systemImage: "trash")
-                    }
-
+                    Button("Edit", systemImage: "pencil") {}
+                    Button("Hapus", systemImage: "trash", role: .destructive) {}
                 } label: {
                     Image(systemName: "ellipsis")
                         .foregroundStyle(.gray)
@@ -72,24 +64,21 @@ struct LastTransactionRow: View {
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .shadow(color: .black.opacity(0.06), radius: 10, y: 6)
+        .overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(Color.white.opacity(0.5), lineWidth: 0.5)
+        )
     }
 
-    // MARK: + / - FORMAT
-
     var amountText: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "IDR"
-        formatter.maximumFractionDigits = 0
-
-        let formatted = formatter.string(from: NSNumber(value: transaction.amount)) ?? "Rp 0"
+        let number = abs(transaction.amount).toNumberString()
 
         if transaction.isIncome {
-            return "+ \(formatted)"
+            return "+ \(number)"
         } else if transaction.isTransfer {
-            return formatted
+            return number
         } else {
-            return "- \(formatted)"
+            return "- \(number)"
         }
     }
 }

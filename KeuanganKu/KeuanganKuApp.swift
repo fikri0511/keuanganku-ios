@@ -14,7 +14,7 @@ import PulseUI
 struct KeuanganKuApp: App {
     @StateObject var authState = AuthState()
     @StateObject var walletVM = WalletViewModel()
-    @StateObject var dashboardVM = DashboardViewModel()   // ✅ SATU SAJA
+    @StateObject var dashboardVM = DashboardViewModel()
 
     var body: some Scene {
         WindowGroup {

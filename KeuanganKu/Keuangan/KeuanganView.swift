@@ -17,7 +17,7 @@ struct KeuanganView: View {
 
             VStack(spacing: 32) {
 
-                // MARK: FLOATING HEADER (Apple Wallet style)
+                // MARK: FLOATING HEADER
                 ZStack {
                     RoundedRectangle(cornerRadius: 32, style: .continuous)
                         .fill(.ultraThinMaterial)
@@ -35,29 +35,45 @@ struct KeuanganView: View {
                             expense: dashboardVM.totalExpense
                         )
                     }
-                    .padding(20) // padding pindah ke isi, bukan ngecilin lebar
+                    .padding(20)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
 
-                // MARK: TRANSACTION SECTION (lower layer)
-                VStack(alignment: .leading, spacing: 16) {
+                // MARK: TRANSAKSI TERAKHIR (RELATIVE TIME)
+                VStack(spacing: 12) {
 
-                    Text("Transaksi Terakhir")
-                        .font(.title3.weight(.semibold))
-                        .padding(.horizontal, 24)
+                    SectionTitle(title: "Transaksi Terakhir")
+
 
                     VStack(spacing: 14) {
-                        ForEach(dashboardVM.lastTransactions) { trx in
+                        ForEach(
+                            dashboardVM.lastTransactions
+                                .sorted(by: { $0.createdAt > $1.createdAt })
+                        ) { trx in
                             if trx.type != "transfer" {
-                                LastTransactionRow(transaction: trx)
+                                RecentTransactionRow(transaction: trx)
                             }
                         }
                     }
-                    .padding(.horizontal, 20)
                 }
-                .background(Color(.systemGroupedBackground))
+                .padding(16)
+                .background(
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color(.secondarySystemBackground),
+                                    Color(.secondarySystemBackground).opacity(0.96)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                )
+                .padding(.horizontal, 20)
                 .padding(.top, 8)
+
             }
             .padding(.bottom, 40)
         }
@@ -71,7 +87,7 @@ struct KeuanganView: View {
                 endPoint: .bottom
             )
         )
-        
+
         .overlay(alignment: .bottomTrailing) {
             Button {
                 // add transaksi
@@ -87,7 +103,7 @@ struct KeuanganView: View {
             .padding(24)
         }
 
-        .task  {
+        .task {
             await dashboardVM.loadData()
             await walletVM.loadWallets()
         }

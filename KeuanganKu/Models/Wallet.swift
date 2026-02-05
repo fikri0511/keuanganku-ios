@@ -11,4 +11,5 @@ struct Wallet: Decodable, Identifiable {
     let id: String
     let name: String
     let balance: Double
+    let icon: String?  
 }
