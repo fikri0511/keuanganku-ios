@@ -16,6 +16,8 @@ struct DetailView: View {
         GridItem(.flexible(), spacing: 16)
     ]
 
+
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 28) {
@@ -34,7 +36,7 @@ struct DetailView: View {
                         }
                     }
                 }
-                .padding(18)
+                .padding(16)
                 .background(sectionBackground)
 
                 Divider()
@@ -63,10 +65,10 @@ struct DetailView: View {
                         }
                     }
                 }
-                .padding(18)
+                .padding(16)
                 .background(sectionBackground)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 12)
             .padding(.bottom, 28)
         }
         .background(Color(.systemGroupedBackground))

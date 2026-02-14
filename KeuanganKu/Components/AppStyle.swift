@@ -18,4 +18,9 @@ enum AppFont {
     static let title = Font.system(size: 22, weight: .bold)
     static let subtitle = Font.system(size: 14)
     static let amount = Font.system(size: 18, weight: .semibold)
+
+    // Tambahan untuk Setting
+    static let label = Font.system(size: 13)
+    static let body = Font.system(size: 16, weight: .semibold)
+    static let caption = Font.system(size: 12)
 }

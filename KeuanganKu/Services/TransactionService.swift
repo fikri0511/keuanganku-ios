@@ -36,4 +36,40 @@ final class TransactionService {
         // ⚠️ Decode langsung array
         return try JSONDecoder().decode([TransactionItem].self, from: data)
     }
+    
+
+
+    func createTransaction(
+        amount: Double,
+        type: String,
+        walletId: UUID,
+        categoryId: UUID,
+        note: String?,
+        date: Date
+    ) async throws {
+
+        struct TransactionInsert: Encodable {
+            let amount: Double
+            let type: String
+            let wallet_id: UUID
+            let category_id: UUID
+            let note: String?
+            let created_at: Date
+        }
+
+        let transaction = TransactionInsert(
+            amount: amount,
+            type: type,
+            wallet_id: walletId,
+            category_id: categoryId,
+            note: note,
+            created_at: date
+        )
+
+        try await SupabaseConfig.shared.client
+            .from("transactions")
+            .insert(transaction)
+            .execute()
+    }
+
 }

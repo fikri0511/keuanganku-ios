@@ -11,6 +11,8 @@ struct KeuanganView: View {
 
     @EnvironmentObject var walletVM: WalletViewModel
     @EnvironmentObject var dashboardVM: DashboardViewModel
+    @State private var showTambahTransaksi = false
+
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -90,7 +92,8 @@ struct KeuanganView: View {
 
         .overlay(alignment: .bottomTrailing) {
             Button {
-                // add transaksi
+                showTambahTransaksi = true
+
             } label: {
                 Image(systemName: "plus")
                     .font(.title2.bold())
@@ -107,5 +110,11 @@ struct KeuanganView: View {
             await dashboardVM.loadData()
             await walletVM.loadWallets()
         }
+        .sheet(isPresented: $showTambahTransaksi) {
+            TambahTransaksiView()
+                .environmentObject(dashboardVM)
+        }
+
+        
     }
 }

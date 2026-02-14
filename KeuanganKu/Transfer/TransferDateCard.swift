@@ -8,15 +8,14 @@
 import SwiftUI
 struct TransferDateCard: View {
 
-    @State private var selectedDate = Date()
+    @Binding var date: Date
     @State private var showPicker = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
 
             Text("Tanggal")
-                .font(.subheadline)
-                .fontWeight(.semibold)
+                .font(.subheadline.weight(.semibold))
 
             Button {
                 showPicker = true
@@ -26,8 +25,6 @@ struct TransferDateCard: View {
                         .foregroundColor(.gray)
 
                     Text(formattedDate)
-                        .foregroundColor(.primary)
-
                     Spacer()
                 }
                 .padding()
@@ -36,24 +33,16 @@ struct TransferDateCard: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(.white)
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.05), radius: 8, y: 4)
         .sheet(isPresented: $showPicker) {
-            VStack {
-                DatePicker(
-                    "Pilih Tanggal",
-                    selection: $selectedDate,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(.graphical)
-                .padding()
-
-                Button("Selesai") {
-                    showPicker = false
-                }
-                .padding()
-            }
+            DatePicker(
+                "Pilih Tanggal",
+                selection: $date,
+                displayedComponents: .date
+            )
+            .datePickerStyle(.graphical)
             .presentationDetents([.medium])
         }
     }
@@ -62,6 +51,6 @@ struct TransferDateCard: View {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "id_ID")
         formatter.dateStyle = .long
-        return formatter.string(from: selectedDate)
+        return formatter.string(from: date)
     }
 }

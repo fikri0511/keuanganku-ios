@@ -15,6 +15,9 @@ struct KeuanganKuApp: App {
     @StateObject var authState = AuthState()
     @StateObject var walletVM = WalletViewModel()
     @StateObject var dashboardVM = DashboardViewModel()
+    @StateObject var categoryVM = CategoryViewModel()
+    
+    
 
     var body: some Scene {
         WindowGroup {
@@ -22,7 +25,8 @@ struct KeuanganKuApp: App {
                 ContentView()
                     .environmentObject(walletVM)
                     .environmentObject(authState)
-                    .environmentObject(dashboardVM)   // ✅ INI KUNCINYA
+                    .environmentObject(dashboardVM)
+                    .environmentObject(categoryVM) // ✅ TAMBAH INI
             } else {
                 LoginView()
                     .environmentObject(authState)

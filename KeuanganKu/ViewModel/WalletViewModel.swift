@@ -16,10 +16,17 @@ final class WalletViewModel: ObservableObject {
     func loadWallets() async {
         do {
             wallets = try await WalletService.shared.fetchWallets()
-            print("✅ WALLET COUNT:", wallets.count)
         } catch {
-            print("❌ WALLET ERROR:", error)
+            print("Wallet load error:", error)
         }
     }
 
+    func addWallet(name: String, balance: Double, icon: String) async throws {
+        try await WalletService.shared.createWallet(
+            name: name,
+            balance: balance,
+            icon: icon
+        )
+        await loadWallets()
+    }
 }

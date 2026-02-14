@@ -19,13 +19,15 @@ struct IncomeExpenseSection: View {
                 color: .green,
                 icon: "chart.line.uptrend.xyaxis"
             )
-            
+            .frame(maxWidth: .infinity)
+
             summaryCard(
                 title: "Pengeluaran",
                 amount: expense,
                 color: .red,
                 icon: "chart.line.downtrend.xyaxis"
             )
+            .frame(maxWidth: .infinity)
         }
     }
     
@@ -53,14 +55,16 @@ struct IncomeExpenseSection: View {
                         .foregroundStyle(color)
                         .lineLimit(1)              // ⬅️ jangan boleh turun
                         .minimumScaleFactor(0.5)  // ⬅️ mengecil kalau perlu
-
+                    
                 }
                 
                 Text(amount, format: .currency(code: "IDR"))
-                    .font(.system(size: 22, weight: .bold)) // dibesarin dikit
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundStyle(color)
-                    .lineLimit(1)                 // ⬅️ WAJIB
-                    .minimumScaleFactor(0.7)     // ⬅️ WAJIB
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .layoutPriority(1)
             }
             
             Spacer()
