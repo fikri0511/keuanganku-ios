@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WalletItemCard: View {
 
-    let id: String
+    let id: UUID
        let name: String
-       let balance: Int
+       let balance: Double
+    let icon: String?
        let isSelected: Bool
        let isBlocked: Bool
        let onTap: () -> Void
@@ -28,18 +29,19 @@ struct WalletItemCard: View {
     var body: some View {
         VStack(spacing: 6) {
 
-            Image(systemName: iconName)
+            Image(systemName: SFSymbolMapper.map(icon))
                 .font(.title3)
                 .foregroundColor(isSelected ? .clear : .gray)
                 .overlay(
                     Group {
                         if isSelected {
-                            Image(systemName: iconName)
+                            Image(systemName: SFSymbolMapper.map(icon))
                                 .font(.title3)
                                 .foregroundStyle(gradient)
                         }
                     }
                 )
+
 
             Text(name)
                 .font(.subheadline)
@@ -56,7 +58,7 @@ struct WalletItemCard: View {
                     }
                 )
 
-            Text("Rp \(balance.formatted())")
+            Text("Rp \(Int(balance).formatted())")
                 .font(.caption)
                 .foregroundColor(.gray)
         }
@@ -80,12 +82,4 @@ struct WalletItemCard: View {
         }
     }
 
-    private var iconName: String {
-        switch name.lowercased() {
-        case "gopay": return "iphone"
-        case "bank bca": return "building.columns"
-        case "dompet cash": return "wallet.pass"
-        default: return "creditcard"
-        }
-    }
 }

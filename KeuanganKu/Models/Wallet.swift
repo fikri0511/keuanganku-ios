@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Wallet: Decodable, Identifiable {
-    let id: String
+    let id: UUID
     let name: String
     let balance: Double
     let icon: String?  

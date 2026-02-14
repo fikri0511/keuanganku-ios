@@ -42,11 +42,12 @@ struct WalletTransferCard: View {
                 columns: Array(repeating: GridItem(.flexible()), count: 3),
                 spacing: 12
             ) {
-                ForEach(wallets, id: \.id) { wallet in
+                ForEach(wallets) { wallet in
                     WalletItemCard(
                         id: wallet.id,
                         name: wallet.name,
-                        balance: Int(wallet.balance),
+                        balance: wallet.balance,
+                        icon: wallet.icon,                 // langsung kirim
                         isSelected: selected.wrappedValue?.id == wallet.id,
                         isBlocked: blocked?.id == wallet.id
                     ) {
